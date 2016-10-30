@@ -121,7 +121,14 @@ public class Photo extends DataObject {
 	 * The default type is jpg
 	 */
 	protected String ending = "jpg";
-	
+
+	/**
+	 * Each photo can have one Location, which should the place where it
+	 * was shot.
+	 */
+	//TODO: use the location (and add getter)
+	protected Location location;
+
 	/**
 	 *
 	 */
