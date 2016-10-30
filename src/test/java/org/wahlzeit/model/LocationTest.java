@@ -1,8 +1,19 @@
-import static org.junit.Assert.*;
+package org.wahlzeit.model;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Nils on 24/10/16.
+ * Test class for {@link Location}.
  */
 public class LocationTest {
 
+    @Test
+    public void testConstructor() {
+        Coordinate testCoordinate = new Coordinate(0.0, 0.0);
+        Location testLocation = new Location(testCoordinate);
+
+        assertEquals(testLocation.getCoordinate(), testCoordinate);
+    }
 }
