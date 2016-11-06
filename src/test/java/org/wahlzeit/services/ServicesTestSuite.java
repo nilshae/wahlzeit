@@ -2,12 +2,11 @@ package org.wahlzeit.services;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.wahlzeit.services.mailing.EmailServiceTest;
 import org.wahlzeit.services.mailing.MailingTestSuite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        EmailServiceTest.class,
+        EmailAddressTest.class,
         MailingTestSuite.class,
         LogBuilderTest.class
 })
