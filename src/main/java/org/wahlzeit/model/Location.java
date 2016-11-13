@@ -26,6 +26,10 @@ public class Location {
      * @param coordinate of this Location
      */
     public Location(Coordinate coordinate) {
+        if(coordinate == null) {
+            throw new IllegalArgumentException("coordinate can not be null.");
+        }
+
         this.coordinate = coordinate;
     }
 
