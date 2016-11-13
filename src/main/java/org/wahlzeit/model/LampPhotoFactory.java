@@ -1,23 +1,28 @@
 package org.wahlzeit.model;
 
-import java.util.logging.Logger;
-
+/**
+ * Factory for creating lamp photos and related objects.
+ */
 public class LampPhotoFactory extends PhotoFactory {
 
-    private static final Logger log = Logger.getLogger(LampPhotoFactory.class.getName());
+    // initialize the singleton instance.
+    static { instance = new LampPhotoFactory(); }
 
     /**
-     * Hidden singleton instance; needs to be initialized from the outside.
+     * Creates a new photo
+     *
+     * @methodtype factory
      */
-    private static LampPhotoFactory instance = null;
-
-    /**
-     * This is the standard constructor of the LampPhotoFactory class.
-     * @methodtype constructor
-     */
-    public LampPhotoFactory() {
-        super();
+    public Photo createPhoto() {
+        return new LampPhoto();
     }
 
-
+    /**
+     * Creates a new photo with the specified id
+     *
+     * @methodtype factory
+     */
+    public Photo createPhoto(PhotoId myId) {
+        return new LampPhoto(myId);
+    }
 }
