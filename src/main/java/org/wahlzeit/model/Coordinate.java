@@ -24,6 +24,14 @@ public class Coordinate {
     private final double longitude;
 
     /**
+     * @methodtype constructor
+     */
+    public Coordinate() {
+        this.latitude = 0;
+        this.longitude = 0;
+    }
+
+    /**
      * This is the standard constructor of the Coordinate class.
      * @param latitude in degree
      * @param longitude in degree
