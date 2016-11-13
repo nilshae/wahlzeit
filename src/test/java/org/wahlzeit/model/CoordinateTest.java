@@ -11,10 +11,10 @@ public class CoordinateTest {
 
     @Test
     public void testConstructor() {
-        Coordinate coordinate = new Coordinate(100, 200);
+        Coordinate coordinate = new Coordinate(90, 170);
 
-        assertEquals(coordinate.getLatitude(), 100, 0);
-        assertEquals(coordinate.getLongitude(), 200, 0);
+        assertEquals(90, coordinate.getLatitude(), 0);
+        assertEquals(170, coordinate.getLongitude(), 0);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class CoordinateTest {
 
         double distance = coordinate1.getDistance(coordinate2);
 
-        assertEquals(distance, 3.5, 0.5);
+        assertEquals(3.5, distance, 0.5);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class CoordinateTest {
 
         double distance = coordinate1.getDistance(coordinate2);
 
-        assertEquals(distance, 0.0, 0);
+        assertEquals(0.0, distance, 0);
     }
 
     @Test
