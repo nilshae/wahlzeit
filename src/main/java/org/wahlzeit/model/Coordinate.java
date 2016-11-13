@@ -29,6 +29,13 @@ public class Coordinate {
      * @param longitude in degree
      */
     public Coordinate(double latitude, double longitude) {
+        if(latitude > 90 || latitude < -90) {
+            throw new IllegalArgumentException("latitude is not between -90° and 90°");
+        }
+        if(longitude > 180 || longitude < -180) {
+            throw new IllegalArgumentException("longitude in not between -180° and 180°");
+        }
+
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -38,7 +45,7 @@ public class Coordinate {
      * @return latitude in degree
      */
     public double getLatitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
@@ -46,7 +53,7 @@ public class Coordinate {
      * @return longitude in degree
      */
     public double getLongitude() {
-        return longitude;
+        return this.longitude;
     }
 
     /**
@@ -56,6 +63,10 @@ public class Coordinate {
      * @return distance between the two Coordinates
      */
     public double getDistance(Coordinate otherCoordinate) {
+        if(otherCoordinate == null) {
+            throw new IllegalArgumentException("otherCoordinate can not be null.");
+        }
+
         double deltaLatitude = Math.toRadians(latitude - otherCoordinate.getLatitude());
         double deltaLongitude = Math.toRadians(longitude - otherCoordinate.getLongitude());
         double firstLatitudeInRad = Math.toRadians(latitude);
