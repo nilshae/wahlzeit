@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AbstractAdapterTest.class,
-        DatastoreAdapter.class,
+        DatastoreAdapterTest.class,
         GcsAdapterTest.class
 })
 
