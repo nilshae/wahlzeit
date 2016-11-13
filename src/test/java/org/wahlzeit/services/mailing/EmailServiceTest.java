@@ -19,16 +19,18 @@
  */
 package org.wahlzeit.services.mailing;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.wahlzeit.main.ServiceMain;
 import org.wahlzeit.services.EmailAddress;
 
 /**
  *
  */
-public class EmailServiceTest extends TestCase {
+public class EmailServiceTest {
 
 	/**
 	 * Test EmailService
@@ -45,9 +47,7 @@ public class EmailServiceTest extends TestCase {
 	 * Prepares an mockEmailService and the test EmailAddress
 	 */
 	@Before
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	public void setUp() throws Exception {
 		ServiceMain.getInstance().setProductionMode(false);
 
 		emailService = EmailServiceManager.getDefaultService();
