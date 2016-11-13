@@ -48,7 +48,7 @@ public class EmailServiceTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		ServiceMain.getInstance().setProductionMode(false);
+		ServiceMain.getInstance().setIsInProduction(false);
 
 		emailService = EmailServiceManager.getDefaultService();
 		validAddress = EmailAddress.getFromString("test@test.de");

@@ -85,8 +85,18 @@ public class ServiceMain extends ModelMain {
 		return instance.isInProduction;
 	}
 
-	public void setProductionMode(boolean mode) {
-		isInProduction = mode;
+	/**
+	 *
+	 */
+	public void setIsInProduction(boolean mode) {
+		this.isInProduction = mode;
+	}
+
+	/**
+	 *
+	 */
+	public boolean getIsInProduction() {
+		return this.isInProduction;
 	}
 
 	/**
