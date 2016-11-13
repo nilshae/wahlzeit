@@ -123,10 +123,9 @@ public class Photo extends DataObject {
 	protected String ending = "jpg";
 
 	/**
-	 * Each photo can have one Location, which should the place where it
+	 * Each photo can have one Location, which should be the place where it
 	 * was shot.
 	 */
-	//TODO: use the location (and add getter)
 	protected Location location;
 
 	/**
@@ -342,6 +341,8 @@ public class Photo extends DataObject {
 		return (double) praiseSum / noVotes;
 	}
 
+
+
 	/**
 	 *
 	 */
@@ -424,5 +425,19 @@ public class Photo extends DataObject {
 	public void setNoNewPraise() {
 		noVotesAtLastNotification = noVotes;
 		incWriteCount();
+	}
+
+	/**
+	 * @methodtype get
+	 */
+	public Location getLocation() {
+		return location;
+	}
+
+	/**
+	 * @methodtype set
+	 */
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 }
