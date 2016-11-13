@@ -19,7 +19,7 @@
 package org.wahlzeit.model;
 
 public class Coordinate {
-    public static final double EARTH_RADIUS = 6371; //Approximation in km
+    public static final double EARTH_RADIUS_KM = 6371;
     private final double latitude;
     private final double longitude;
 
@@ -51,7 +51,7 @@ public class Coordinate {
 
     /**
      * Computes the distance between this Coordinate and an other Coordinate.
-     * The implementation follows https://www.wikiwand.com/en/Haversine_formula#/The_haversine_formula
+     * The implementation follows <a href="http://[...]">https://www.wikiwand.com/en/Haversine_formula#/The_haversine_formula</a>
      * @param otherCoordinate the Coordinate to calculate the distance with.
      * @return distance between the two Coordinates
      */
@@ -62,7 +62,7 @@ public class Coordinate {
         double secondLatitudeInRad = Math.toRadians(otherCoordinate.getLatitude());
 
         double haversineCentralAngle = haversine(deltaLatitude) + Math.cos(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * haversine(deltaLongitude);
-        return 2 * EARTH_RADIUS * Math.asin(Math.sqrt(haversineCentralAngle));
+        return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(haversineCentralAngle));
     }
 
     /**
