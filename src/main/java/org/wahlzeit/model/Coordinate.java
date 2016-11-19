@@ -33,6 +33,7 @@ public class Coordinate {
 
     /**
      * This is the standard constructor of the Coordinate class.
+     * @methodtype constructor
      * @param latitude in degree
      * @param longitude in degree
      */
@@ -50,6 +51,7 @@ public class Coordinate {
 
     /**
      * Returns the latitude.
+     * @methodtype get
      * @return latitude in degree
      */
     public double getLatitude() {
@@ -58,6 +60,7 @@ public class Coordinate {
 
     /**
      * Returns the longitude.
+     * @methodtype get
      * @return longitude in degree
      */
     public double getLongitude() {

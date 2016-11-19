@@ -95,13 +95,6 @@ public class ServiceMain extends ModelMain {
 	/**
 	 *
 	 */
-	public boolean getIsInProduction() {
-		return this.isInProduction;
-	}
-
-	/**
-	 *
-	 */
 	public void startUp(boolean inProduction, String rootDir) throws Exception {
 		isInProduction = inProduction;
 

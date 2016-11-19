@@ -22,14 +22,8 @@ public class Location {
     private final Coordinate coordinate;
 
     /**
+     * This is the standard constructor of the Location class
      * @methodtype constructor
-     */
-    Location() {
-        this(null);
-    }
-
-    /**
-     * This is the standard constructor of the Location class.
      * @param coordinate of this Location
      */
     public Location(Coordinate coordinate) {
@@ -42,6 +36,7 @@ public class Location {
 
     /**
      * Returns the Coordinate of this Location.
+     * @methodtype get
      * @return coordinate of the location
      */
     public Coordinate getCoordinate() {
