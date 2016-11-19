@@ -24,18 +24,18 @@ import com.googlecode.objectify.annotation.Subclass;
 public class LampPhoto extends Photo {
 
     public enum Material {METAL, WOOD, PLASTIC, OTHER}
-    public enum Type {FLOOR_LAMP, HANGING_LAMP, TABLE_LAMP, STREET_LAMP}
+    public enum Type {FLOOR_LAMP, HANGING_LAMP, TABLE_LAMP, STREET_LAMP, NOT_DEFINED}
 
-    Material material;
-    Type type;
-    int consumptionInKwh;
+    private Material material;
+    private Type type;
+    private boolean vintage;
 
     /**
-     * This is the standard constructor of the LampPhoto class.
+     * Constructor of the LampPhoto class.
      * @methodtype constructor
      */
     public LampPhoto() {
-        super();
+        this(PhotoId.getNextId());
     }
 
     /**
@@ -44,6 +44,63 @@ public class LampPhoto extends Photo {
      * @methodtype constructor
      */
     public LampPhoto(PhotoId myId) {
+        this(myId, Material.OTHER, Type.NOT_DEFINED, false);
+    }
+
+    /**
+     * This is the standard constructor of the LampPhoto class.
+     * @param myId
+     * @param myId
+     * @param myId
+     * @param myId
+     * @methodtype constructor
+     */
+    public LampPhoto(PhotoId myId, Material material, Type type, boolean vintage) {
         super(myId);
+        this.material = material;
+        this.type = type;
+        this.vintage = vintage;
+    }
+
+    /**
+     * @methodtype get
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * @methodtype set
+     */
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    /**
+     * @methodtype get
+     */
+    public Type getType() {
+        return type;
+    }
+
+    /**
+     * @methodtype set
+     */
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    /**
+     * @methodtype get
+     */
+    public boolean isVintage() {
+        return vintage;
+    }
+
+    /**
+     * @methodtype set
+     */
+    public void setVintage(boolean vintage) {
+        this.vintage = vintage;
     }
 }
