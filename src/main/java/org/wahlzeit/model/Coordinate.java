@@ -18,82 +18,8 @@
 
 package org.wahlzeit.model;
 
-public class Coordinate {
-    public static final double EARTH_RADIUS_KM = 6371;
-    private final double latitude;
-    private final double longitude;
+public interface Coordinate {
+    double EARTH_RADIUS_KM = 6371;
 
-    /**
-     * @methodtype constructor
-     */
-    public Coordinate() {
-        this.latitude = 0;
-        this.longitude = 0;
-    }
-
-    /**
-     * This is the standard constructor of the Coordinate class.
-     * @methodtype constructor
-     * @param latitude in degree
-     * @param longitude in degree
-     */
-    public Coordinate(double latitude, double longitude) {
-        if(latitude > 90 || latitude < -90) {
-            throw new IllegalArgumentException("latitude is not between -90° and 90°");
-        }
-        if(longitude > 180 || longitude < -180) {
-            throw new IllegalArgumentException("longitude in not between -180° and 180°");
-        }
-
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    /**
-     * Returns the latitude.
-     * @methodtype get
-     * @return latitude in degree
-     */
-    public double getLatitude() {
-        return this.latitude;
-    }
-
-    /**
-     * Returns the longitude.
-     * @methodtype get
-     * @return longitude in degree
-     */
-    public double getLongitude() {
-        return this.longitude;
-    }
-
-    /**
-     * Computes the distance between this Coordinate and an other Coordinate.
-     * The implementation follows <a href="http://[...]">https://www.wikiwand.com/en/Haversine_formula#/The_haversine_formula</a>
-     * @param otherCoordinate the Coordinate to calculate the distance with.
-     * @return distance between the two Coordinates
-     */
-    public double getDistance(Coordinate otherCoordinate) {
-        if(otherCoordinate == null) {
-            throw new IllegalArgumentException("otherCoordinate can not be null.");
-        }
-
-        double deltaLatitude = Math.toRadians(latitude - otherCoordinate.getLatitude());
-        double deltaLongitude = Math.toRadians(longitude - otherCoordinate.getLongitude());
-        double firstLatitudeInRad = Math.toRadians(latitude);
-        double secondLatitudeInRad = Math.toRadians(otherCoordinate.getLatitude());
-
-        double haversineCentralAngle = haversine(deltaLatitude) + Math.cos(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * haversine(deltaLongitude);
-        return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(haversineCentralAngle));
-    }
-
-    /**
-     * Computes the haversine for a given angle in radians.
-     * The implementation follows https://www.wikiwand.com/en/Haversine_formula#/The_haversine_formula
-     * @param angleInRand the angle in radians
-     * @return the haversine for the given angle.
-     */
-    private double haversine(double angleInRand) {
-        return (1 - Math.cos(angleInRand))/ 2;
-    }
+    double getDistance(Coordinate otherCoordinate);
 }
