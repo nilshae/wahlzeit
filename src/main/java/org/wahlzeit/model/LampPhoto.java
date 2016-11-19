@@ -5,11 +5,12 @@ import com.googlecode.objectify.annotation.Subclass;
 @Subclass
 public class LampPhoto extends Photo {
 
-    // TODO: add fields that make lamps special.
-    // e.g. wastage in watt
-    // bool is
-    // enum Material {wood, metal, plastic}
-    // enum Type {floorlamp, hanging lamp, table lamp, ...}
+    public enum Material {METAL, WOOD, PLASTIC, OTHER}
+    public enum Type {FLOOR_LAMP, HANGING_LAMP, TABLE_LAMP, STREET_LAMP}
+
+    Material material;
+    Type type;
+    int consumptionInKwh;
 
     /**
      * This is the standard constructor of the LampPhoto class.
