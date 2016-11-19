@@ -1,5 +1,8 @@
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Subclass;
+
+@Subclass
 public class LampPhoto extends Photo {
 
     // TODO: add fields that make lamps special.
