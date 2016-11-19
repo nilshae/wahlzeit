@@ -22,4 +22,6 @@ public interface Coordinate {
     double EARTH_RADIUS_KM = 6371;
 
     double getDistance(Coordinate otherCoordinate);
+
+    SphericalCoordinate convertToSpherical();
 }

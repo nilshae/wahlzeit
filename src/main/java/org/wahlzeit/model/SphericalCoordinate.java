@@ -70,22 +70,25 @@ public class SphericalCoordinate implements Coordinate {
             throw new IllegalArgumentException("otherCoordinate can not be null.");
         }
 
-        SphericalCoordinate otherSphericCoordinate = convertToSpherical(otherCoordinate);
+        SphericalCoordinate otherSphericalCoordinate = otherCoordinate.convertToSpherical();
 
-        double deltaLatitude = Math.toRadians(latitude - otherSphericCoordinate.getLatitude());
-        double deltaLongitude = Math.toRadians(longitude - otherSphericCoordinate.getLongitude());
+        double deltaLatitude = Math.toRadians(latitude - otherSphericalCoordinate.getLatitude());
+        double deltaLongitude = Math.toRadians(longitude - otherSphericalCoordinate.getLongitude());
         double firstLatitudeInRad = Math.toRadians(latitude);
-        double secondLatitudeInRad = Math.toRadians(otherSphericCoordinate.getLatitude());
+        double secondLatitudeInRad = Math.toRadians(otherSphericalCoordinate.getLatitude());
 
         double haversineCentralAngle = haversine(deltaLatitude) + Math.cos(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * haversine(deltaLongitude);
         return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(haversineCentralAngle));
     }
 
-    private SphericalCoordinate convertToSpherical(Coordinate coordinate) {
-        //TODO: conversion
-        return new SphericalCoordinate(0,0);
+    /**
+     * Converts the instance to a SphericalCoordinate. This implementation exits only to full fill the Coordinate interface.
+     * @return this SphericalCoordinate
+     */
+    @Override
+    public SphericalCoordinate convertToSpherical() {
+        return this;
     }
-
 
     /**
      * Computes the haversine for a given angle in radians.
