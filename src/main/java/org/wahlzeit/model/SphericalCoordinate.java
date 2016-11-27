@@ -21,14 +21,16 @@ package org.wahlzeit.model;
 public class SphericalCoordinate implements Coordinate {
     private final double latitude;
     private final double longitude;
+    private final double radius;
 
     /**
      * This is the standard constructor of the SphericalCoordinate class.
      * @methodtype constructor
      * @param latitude in degree
      * @param longitude in degree
+     * @param radius in km
      */
-    public SphericalCoordinate(double latitude, double longitude) {
+    public SphericalCoordinate(double latitude, double longitude, double radius) {
         if(latitude > 90 || latitude < -90) {
             throw new IllegalArgumentException("latitude is not between -90° and 90°");
         }
@@ -38,6 +40,7 @@ public class SphericalCoordinate implements Coordinate {
 
         this.latitude = latitude;
         this.longitude = longitude;
+        this.radius = Math.abs(radius);
     }
 
     /**
@@ -56,6 +59,15 @@ public class SphericalCoordinate implements Coordinate {
      */
     public double getLongitude() {
         return this.longitude;
+    }
+
+    /**
+     * Returns the radius.
+     * @methodtype get
+     * @return radius in km
+     */
+    public double getRadius() {
+        return radius;
     }
 
     /**

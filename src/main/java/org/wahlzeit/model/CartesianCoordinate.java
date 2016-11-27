@@ -20,7 +20,6 @@ package org.wahlzeit.model;
 
 public class CartesianCoordinate implements Coordinate {
 
-    // x, y, z represent a position on earths surface. The origin is the center of earth.
     private final double x;
     private final double y;
     private final double z;
@@ -36,10 +35,6 @@ public class CartesianCoordinate implements Coordinate {
         this.x = x;
         this.y = y;
         this.z = z;
-
-        if (!isValidCoordinate()) {
-            throw new IllegalArgumentException("CartesianCoordinate does not lie of earths surface.");
-        }
     }
 
     /**
@@ -66,7 +61,7 @@ public class CartesianCoordinate implements Coordinate {
         double latitude = Math.atan2(y, x);
         double longitude =  Math.atan2(Math.sqrt( Math.pow(x,2) + Math.pow(y,2) ), z);
 
-        return new SphericalCoordinate(Math.toDegrees(latitude), Math.toDegrees(longitude));
+        return new SphericalCoordinate(Math.toDegrees(latitude), Math.toDegrees(longitude), radius);
     }
 
     /**
