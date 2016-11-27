@@ -16,19 +16,6 @@ public class CartesianCoordinateTest {
     }
 
     @Test
-    public void testGetDistance() {
-        // This is only a simple test, because the getDistance() extensively
-        // tested in SphericalCoordinateTest
-
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(6371, 0, 0);
-        CartesianCoordinate coordinate2 = new CartesianCoordinate(0, 6371, 0);
-
-        double distance = coordinate1.getDistance(coordinate2);
-
-        assertEquals(9009.95, distance, 0.01);
-    }
-
-    @Test
     public void testOnXAxisConvertToSpherical() {
         CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(6371, 0, 0);
         SphericalCoordinate sphericalCoordinate = new SphericalCoordinate(0, 90, 6371);
