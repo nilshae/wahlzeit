@@ -19,11 +19,31 @@
 package org.wahlzeit.model;
 
 public interface Coordinate {
-    double EARTH_RADIUS_KM = 6371;
-
+    /**
+     * Computes the shortest distance between this Coordinate and an other Coordinate.
+     *
+     * @param otherCoordinate the Coordinate to calculate the distance with.
+     * @return shortest distance between the two Coordinates
+     */
     double getDistance(Coordinate otherCoordinate);
 
+    /**
+     * Converts the this Coordinate to a SphericalCoordinate.
+     * @return this SphericalCoordinate
+     */
     SphericalCoordinate convertToSpherical();
 
+    /**
+     * Converts the this instance to a CartesianCoordinate.
+     * @return this Coordinate as CartesianCoordinate
+     */
     CartesianCoordinate convertToCartesian();
+
+    /**
+     * Test if two Coordinates have the same location with respect to an error.
+     *
+     * @param otherCoordinate the Coordinate to check with
+     * @return true if equal or false if not
+     */
+    boolean isEqual(Coordinate otherCoordinate);
 }
