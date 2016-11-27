@@ -18,7 +18,7 @@
 
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
     private final double x;
     private final double y;
@@ -35,20 +35,6 @@ public class CartesianCoordinate implements Coordinate {
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    /**
-     * Computes the distance between this Coordinate and an other Coordinate.
-     * This implementation makes use of the implementation form the SphericalCoordinate class.
-     * @param otherCoordinate the Coordinate to calculate the distance with.
-     * @return distance between the two Coordinates
-     */
-    @Override
-    public double getDistance(Coordinate otherCoordinate) {
-        SphericalCoordinate thisAsSpherical = this.convertToSpherical();
-        SphericalCoordinate otherAsSpherical = otherCoordinate.convertToSpherical();
-
-        return thisAsSpherical.getDistance(otherAsSpherical);
     }
 
     /**
@@ -96,7 +82,4 @@ public class CartesianCoordinate implements Coordinate {
     public double getZ() {
         return z;
     }
-
-
-
 }
