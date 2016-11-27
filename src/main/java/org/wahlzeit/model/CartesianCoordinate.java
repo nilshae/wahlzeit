@@ -65,6 +65,15 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     /**
+     * Converts the this instance to a CartesianCoordinate.
+     * @return this Coordinate as CartesianCoordinate
+     */
+    @Override
+    public CartesianCoordinate convertToCartesian() {
+        return this;
+    }
+
+    /**
      * Returns the prim value x.
      * @methodtype get
      */
@@ -89,13 +98,5 @@ public class CartesianCoordinate implements Coordinate {
     }
 
 
-    /**
-     * Checks if given position is located on earths surface with respect to an error value.
-     * @return boolean
-     */
-    private boolean isValidCoordinate() {
-        double lengthOfVector = Math.sqrt(x*x + y*y + z*z);
 
-        return Math.abs(lengthOfVector - Coordinate.EARTH_RADIUS_KM) <= 1e-7;
-    }
 }

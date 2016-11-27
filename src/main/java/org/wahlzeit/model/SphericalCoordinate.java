@@ -103,6 +103,22 @@ public class SphericalCoordinate implements Coordinate {
     }
 
     /**
+     * Converts the this instance to a CartesianCoordinate.
+     * @return this Coordinate as CartesianCoordinate
+     */
+    @Override
+    public CartesianCoordinate convertToCartesian() {
+        double latitudeRadian = Math.toRadians(getLatitude());
+        double longitudeRadian = Math.toRadians(getLongitude());
+
+        double x = radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
+        double y = radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
+        double z = radius * Math.sin(latitudeRadian);
+
+        return new CartesianCoordinate(x, y, z);
+    }
+
+    /**
      * Computes the haversine for a given angle in radians.
      * The implementation follows https://www.wikiwand.com/en/Haversine_formula#/The_haversine_formula
      * @param angleInRand the angle in radians

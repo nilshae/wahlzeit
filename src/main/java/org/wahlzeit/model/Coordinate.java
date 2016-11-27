@@ -24,4 +24,6 @@ public interface Coordinate {
     double getDistance(Coordinate otherCoordinate);
 
     SphericalCoordinate convertToSpherical();
+
+    CartesianCoordinate convertToCartesian();
 }
