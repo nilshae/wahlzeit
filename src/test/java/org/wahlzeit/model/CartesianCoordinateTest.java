@@ -25,7 +25,7 @@ public class CartesianCoordinateTest {
 
         double distance = coordinate1.getDistance(coordinate2);
 
-        assertEquals(10007.54, distance, 0.01);
+        assertEquals(9009.95, distance, 0.01);
     }
 
     @Test

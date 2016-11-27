@@ -13,9 +13,13 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate otherCoordinate) {
-        CartesianCoordinate thisAsCartesian = otherCoordinate.convertToCartesian();
+        CartesianCoordinate thisAsCartesian  = this.convertToCartesian();
         CartesianCoordinate otherAsCartesian = otherCoordinate.convertToCartesian();
 
-        return thisAsCartesian.getDistance(otherAsCartesian);
+        double distanceX = thisAsCartesian.getX() - otherAsCartesian.getX();
+        double distanceY = thisAsCartesian.getY() - otherAsCartesian.getY();
+        double distanceZ = thisAsCartesian.getZ() - otherAsCartesian.getZ();
+
+        return Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2) + Math.pow(distanceZ,2));
     }
 }
