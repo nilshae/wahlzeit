@@ -13,6 +13,10 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate otherCoordinate) {
+        if(otherCoordinate == null) {
+            throw new IllegalArgumentException("otherCoordinate can not be null.");
+        }
+
         CartesianCoordinate thisAsCartesian  = this.convertToCartesian();
         CartesianCoordinate otherAsCartesian = otherCoordinate.convertToCartesian();
 
