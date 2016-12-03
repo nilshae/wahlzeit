@@ -63,11 +63,11 @@ public class AbstractCoordinateTest {
     }
 
     @Test
-    public void testGetDistancelDifferentTypes() {
+    public void testGetDistanceDifferentTypes() {
         Coordinate coordinate1 = new CartesianCoordinate(6371, 0, 0);
         Coordinate coordinate2 = new SphericalCoordinate(0, 0, 6371);
 
-        assertEquals(0 ,coordinate1.getDistance(coordinate2), 0);
+        assertEquals(0, coordinate1.getDistance(coordinate2), 0);
     }
 
     @Test
@@ -86,11 +86,5 @@ public class AbstractCoordinateTest {
         SphericalCoordinate coordinate2 = new SphericalCoordinate(50.0, 1.0, 6371);
 
         assertEquals(coordinate1.getDistance(coordinate2), coordinate2.getDistance(coordinate1), 0);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetDistanceInvalidArgument() {
-        Coordinate coordinate1 = new SphericalCoordinate(1.0, 1.0, 6371);
-        coordinate1.getDistance(null);
     }
 }

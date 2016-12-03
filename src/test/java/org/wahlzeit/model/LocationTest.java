@@ -16,9 +16,4 @@ public class LocationTest {
 
         assertEquals(testCoordinate, testLocation.getCoordinate());
     }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidLocation() {
-        Location testLocation = new Location(null);
-    }
 }
