@@ -37,4 +37,22 @@ public class SphericalCoordinateTest {
     public void testLowerBoundLongitude() {
         Coordinate coordinate = new SphericalCoordinate(50, -200, 6371);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativeRadius() {
+        Coordinate coordinate = new SphericalCoordinate(50, -100, -6371);
+    }
+
+    @Test
+    public void testGetCartesianCoordinates() {
+        Coordinate coordinate = new SphericalCoordinate(0, 0, 6371);
+
+        double x = coordinate.cartesianX();
+        double y = coordinate.cartesianY();
+        double z = coordinate.cartesianZ();
+
+        assertEquals(0, x, 0);
+        assertEquals(0, y, 0);
+        assertEquals(6371, z, 0);
+    }
 }

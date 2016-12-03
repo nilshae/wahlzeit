@@ -36,7 +36,7 @@ public class AbstractCoordinateTest {
         Coordinate coordinate1 = new SphericalCoordinate(50.2064932, -117.1873205, 6371);
         Coordinate coordinate2 = new CartesianCoordinate(200, -100, 6371);
 
-        assertTrue((coordinate1.isEqual(coordinate2) == false));
+        assertTrue(coordinate1.isEqual(coordinate2) == false);
     }
 
     @Test
