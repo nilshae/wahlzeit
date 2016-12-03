@@ -32,10 +32,6 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate otherCoordinate) {
-        if(otherCoordinate == null) {
-            throw new IllegalArgumentException("otherCoordinate can not be null.");
-        }
-
         AbstractCoordinate otherAsAbstract = (AbstractCoordinate) otherCoordinate;
 
         double distanceX = this.getCartesianX() - otherAsAbstract.getCartesianX();
