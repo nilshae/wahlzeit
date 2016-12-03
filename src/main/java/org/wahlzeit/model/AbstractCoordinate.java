@@ -53,6 +53,6 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public boolean isEqual(Coordinate otherCoordinate){
-        return (this.getDistance(otherCoordinate) < 1e-7);
+        return (Math.abs(this.getDistance(otherCoordinate)) < 1e-7);
     }
 }
