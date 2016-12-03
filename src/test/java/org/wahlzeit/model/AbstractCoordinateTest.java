@@ -1,6 +1,7 @@
 package org.wahlzeit.model;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -87,4 +88,13 @@ public class AbstractCoordinateTest {
 
         assertEquals(coordinate1.getDistance(coordinate2), coordinate2.getDistance(coordinate1), 0);
     }
+
+    // mockito spy
+    // private static AbstractCoordinate createMoc(x,y z) {
+    // AbstractCoordinate rusult = mock(AbstractCoordinate.class, Mockito.CALLS_REAL_METHODS);
+    // when(result.asCartesianX()).thenReturn(x);
+    // when(result.asCartesianX()).thenReturn(x);
+    // when(result.asCartesianX()).thenReturn(x);
+    // return result;
+    // }
 }
