@@ -20,6 +20,10 @@ package org.wahlzeit.model;
 
 public abstract class AbstractCoordinate implements Coordinate {
 
+    protected abstract double getCartesianX();
+    protected abstract double getCartesianY();
+    protected abstract double getCartesianZ();
+
     /**
      * Computes the shortest distance between this Coordinate and an other Coordinate.
      *
@@ -32,12 +36,11 @@ public abstract class AbstractCoordinate implements Coordinate {
             throw new IllegalArgumentException("otherCoordinate can not be null.");
         }
 
-        CartesianCoordinate thisAsCartesian  = this.convertToCartesian();
-        CartesianCoordinate otherAsCartesian = otherCoordinate.convertToCartesian();
+        AbstractCoordinate otherAsAbstract = (AbstractCoordinate) otherCoordinate;
 
-        double distanceX = thisAsCartesian.getX() - otherAsCartesian.getX();
-        double distanceY = thisAsCartesian.getY() - otherAsCartesian.getY();
-        double distanceZ = thisAsCartesian.getZ() - otherAsCartesian.getZ();
+        double distanceX = this.getCartesianX() - otherAsAbstract.getCartesianX();
+        double distanceY = this.getCartesianY() - otherAsAbstract.getCartesianY();
+        double distanceZ = this.getCartesianZ() - otherAsAbstract.getCartesianZ();
 
         return Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2) + Math.pow(distanceZ,2));
     }

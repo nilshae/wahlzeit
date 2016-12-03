@@ -38,28 +38,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-     * Converts the this instance to a SphericalCoordinate.
-     * @return this Coordinate as SphericalCoordinate
-     */
-    @Override
-    public SphericalCoordinate convertToSpherical() {
-        double radius = Math.sqrt(x*x + y*y + z*z);
-        double latitude = Math.atan2(y, x);
-        double longitude =  Math.atan2(Math.sqrt( Math.pow(x,2) + Math.pow(y,2) ), z);
-
-        return new SphericalCoordinate(Math.toDegrees(latitude), Math.toDegrees(longitude), radius);
-    }
-
-    /**
-     * Converts the this instance to a CartesianCoordinate.
-     * @return this Coordinate as CartesianCoordinate
-     */
-    @Override
-    public CartesianCoordinate convertToCartesian() {
-        return this;
-    }
-
-    /**
      * Returns the prim value x.
      * @methodtype get
      */
@@ -81,5 +59,20 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     public double getZ() {
         return z;
+    }
+
+    @Override
+    protected double getCartesianX() {
+        return getX();
+    }
+
+    @Override
+    protected double getCartesianY() {
+        return getY();
+    }
+
+    @Override
+    protected double getCartesianZ() {
+        return getZ();
     }
 }

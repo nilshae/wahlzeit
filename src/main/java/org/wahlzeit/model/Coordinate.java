@@ -28,18 +28,6 @@ public interface Coordinate {
     double getDistance(Coordinate otherCoordinate);
 
     /**
-     * Converts the this Coordinate to a SphericalCoordinate.
-     * @return this SphericalCoordinate
-     */
-    SphericalCoordinate convertToSpherical();
-
-    /**
-     * Converts the this instance to a CartesianCoordinate.
-     * @return this Coordinate as CartesianCoordinate
-     */
-    CartesianCoordinate convertToCartesian();
-
-    /**
      * Test if two Coordinates have the same location with respect to an error.
      *
      * @param otherCoordinate the Coordinate to check with

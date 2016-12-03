@@ -70,28 +70,23 @@ public class SphericalCoordinate extends AbstractCoordinate {
         return radius;
     }
 
-    /**
-     * Converts the instance to a SphericalCoordinate. This implementation exits only to full fill the Coordinate interface.
-     * @return this SphericalCoordinate
-     */
     @Override
-    public SphericalCoordinate convertToSpherical() {
-        return this;
-    }
-
-    /**
-     * Converts the this instance to a CartesianCoordinate.
-     * @return this Coordinate as CartesianCoordinate
-     */
-    @Override
-    public CartesianCoordinate convertToCartesian() {
+    protected double getCartesianX() {
         double latitudeRadian = Math.toRadians(getLatitude());
         double longitudeRadian = Math.toRadians(getLongitude());
+        return radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
+    }
 
-        double x = radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
-        double y = radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
-        double z = radius * Math.sin(latitudeRadian);
+    @Override
+    protected double getCartesianY() {
+        double latitudeRadian = Math.toRadians(getLatitude());
+        double longitudeRadian = Math.toRadians(getLongitude());
+        return radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
+    }
 
-        return new CartesianCoordinate(x, y, z);
+    @Override
+    protected double getCartesianZ() {
+        double latitudeRadian = Math.toRadians(getLatitude());
+        return radius * Math.sin(latitudeRadian);
     }
 }
