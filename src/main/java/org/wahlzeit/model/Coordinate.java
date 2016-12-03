@@ -24,21 +24,21 @@ public interface Coordinate {
      *
      * @return value of X as it is in the cartesian system
      */
-    double getCartesianX();
+    double cartesianX();
 
     /**
      * Get the value of Y in the cartesian coordinate system
      *
      * @return value of Y as it is in the cartesian system
      */
-    double getCartesianY();
+    double cartesianY();
 
     /**
      * Get the value of Z in the cartesian coordinate system
      *
      * @return value of Z as it is in the cartesian system
      */
-    double getCartesianZ();
+    double cartesianZ();
 
     /**
      * Computes the shortest distance between this Coordinate and an other Coordinate.

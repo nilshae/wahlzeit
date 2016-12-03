@@ -28,9 +28,9 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate otherCoordinate) {
-        double distanceX = this.getCartesianX() - otherCoordinate.getCartesianX();
-        double distanceY = this.getCartesianY() - otherCoordinate.getCartesianY();
-        double distanceZ = this.getCartesianZ() - otherCoordinate.getCartesianZ();
+        double distanceX = this.cartesianX() - otherCoordinate.cartesianX();
+        double distanceY = this.cartesianY() - otherCoordinate.cartesianY();
+        double distanceZ = this.cartesianZ() - otherCoordinate.cartesianZ();
 
         return Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2) + Math.pow(distanceZ,2));
     }
