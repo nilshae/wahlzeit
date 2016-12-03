@@ -31,16 +31,13 @@ public class SphericalCoordinate extends AbstractCoordinate {
      * @param radius in km
      */
     public SphericalCoordinate(double latitude, double longitude, double radius) {
-        if(latitude > 90 || latitude < -90) {
-            throw new IllegalArgumentException("latitude is not between -90° and 90°");
-        }
-        if(longitude > 180 || longitude < -180) {
-            throw new IllegalArgumentException("longitude in not between -180° and 180°");
-        }
+        assertLatitudeIsValid(latitude);
+        assertLongitudeIsValid(longitude);
+        assertRadiusIsValid(radius);
 
         this.latitude = latitude;
         this.longitude = longitude;
-        this.radius = Math.abs(radius);
+        this.radius = radius;
     }
 
     /**
@@ -88,5 +85,23 @@ public class SphericalCoordinate extends AbstractCoordinate {
     public double cartesianZ() {
         double latitudeRadian = Math.toRadians(getLatitude());
         return radius * Math.sin(latitudeRadian);
+    }
+
+    private void assertLatitudeIsValid(double latitude) throws IllegalArgumentException {
+        if(latitude < -90 || latitude > 90) {
+            throw new IllegalArgumentException("latitude is not between -90° and 90°");
+        }
+    }
+
+    private void assertLongitudeIsValid(double longitude) throws IllegalArgumentException {
+        if(longitude < -180 || longitude > 180) {
+            throw new IllegalArgumentException("longitude in not between -180° and 180°");
+        }
+    }
+
+    private void assertRadiusIsValid(double radius) {
+        if (radius < 0) {
+            throw new IllegalArgumentException("radius is negative.");
+        }
     }
 }
