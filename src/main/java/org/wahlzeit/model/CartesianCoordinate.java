@@ -62,17 +62,17 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    protected double getCartesianX() {
+    public double getCartesianX() {
         return getX();
     }
 
     @Override
-    protected double getCartesianY() {
+    public double getCartesianY() {
         return getY();
     }
 
     @Override
-    protected double getCartesianZ() {
+    public double getCartesianZ() {
         return getZ();
     }
 }

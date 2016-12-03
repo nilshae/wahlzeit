@@ -71,21 +71,21 @@ public class SphericalCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    protected double getCartesianX() {
+    public double getCartesianX() {
         double latitudeRadian = Math.toRadians(getLatitude());
         double longitudeRadian = Math.toRadians(getLongitude());
         return radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
     }
 
     @Override
-    protected double getCartesianY() {
+    public double getCartesianY() {
         double latitudeRadian = Math.toRadians(getLatitude());
         double longitudeRadian = Math.toRadians(getLongitude());
         return radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
     }
 
     @Override
-    protected double getCartesianZ() {
+    public double getCartesianZ() {
         double latitudeRadian = Math.toRadians(getLatitude());
         return radius * Math.sin(latitudeRadian);
     }

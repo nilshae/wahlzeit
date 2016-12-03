@@ -20,6 +20,27 @@ package org.wahlzeit.model;
 
 public interface Coordinate {
     /**
+     * Get the value of X in the cartesian coordinate system
+     *
+     * @return value of X as it is in the cartesian system
+     */
+    double getCartesianX();
+
+    /**
+     * Get the value of Y in the cartesian coordinate system
+     *
+     * @return value of Y as it is in the cartesian system
+     */
+    double getCartesianY();
+
+    /**
+     * Get the value of Z in the cartesian coordinate system
+     *
+     * @return value of Z as it is in the cartesian system
+     */
+    double getCartesianZ();
+
+    /**
      * Computes the shortest distance between this Coordinate and an other Coordinate.
      *
      * @param otherCoordinate the Coordinate to calculate the distance with.
