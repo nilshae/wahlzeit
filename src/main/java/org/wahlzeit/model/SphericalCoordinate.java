@@ -38,6 +38,8 @@ public class SphericalCoordinate extends AbstractCoordinate {
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
+
+        assertClassInvariants();
     }
 
     /**
@@ -71,37 +73,71 @@ public class SphericalCoordinate extends AbstractCoordinate {
     public double cartesianX() {
         double latitudeRadian = Math.toRadians(getLatitude());
         double longitudeRadian = Math.toRadians(getLongitude());
-        return radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
+        double xValue = radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
+
+        assertIsValidCartesian(xValue);
+        assertClassInvariants();
+        return xValue;
     }
 
     @Override
     public double cartesianY() {
         double latitudeRadian = Math.toRadians(getLatitude());
         double longitudeRadian = Math.toRadians(getLongitude());
-        return radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
+        double yValue = radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
+        
+        assertIsValidCartesian(yValue);
+        assertClassInvariants();
+        return yValue;
     }
 
     @Override
     public double cartesianZ() {
         double latitudeRadian = Math.toRadians(getLatitude());
-        return radius * Math.sin(latitudeRadian);
+        double zValue = radius * Math.sin(latitudeRadian);
+
+        assertIsValidCartesian(zValue);
+        assertClassInvariants();
+        return zValue;
     }
 
+    /**
+     * @methodtype assertion
+     * @param latitude value to check
+     */
     private void assertLatitudeIsValid(double latitude) throws IllegalArgumentException {
         if(latitude < -90 || latitude > 90) {
             throw new IllegalArgumentException("latitude is not between -90° and 90°");
         }
     }
 
+    /**
+     * @methodtype assertion
+     * @param longitude value to check
+     */
     private void assertLongitudeIsValid(double longitude) throws IllegalArgumentException {
         if(longitude < -180 || longitude > 180) {
             throw new IllegalArgumentException("longitude in not between -180° and 180°");
         }
     }
 
+    /**
+     * @methodtype assertion
+     * @param radius value to check
+     */
     private void assertRadiusIsValid(double radius) {
         if (radius < 0) {
             throw new IllegalArgumentException("radius is negative.");
         }
     }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertClassInvariants() {
+        assertLongitudeIsValid(longitude);
+        assertLatitudeIsValid(latitude);
+        assertRadiusIsValid(radius);
+    }
+
 }

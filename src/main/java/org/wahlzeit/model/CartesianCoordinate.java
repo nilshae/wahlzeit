@@ -32,9 +32,15 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @param z
      */
     public CartesianCoordinate(double x, double y, double z) {
+        assertIsValidCartesian(x);
+        assertIsValidCartesian(y);
+        assertIsValidCartesian(z);
+
         this.x = x;
         this.y = y;
         this.z = z;
+
+        assertClassInvariants();
     }
 
     /**
@@ -74,5 +80,14 @@ public class CartesianCoordinate extends AbstractCoordinate {
     @Override
     public double cartesianZ() {
         return getZ();
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertClassInvariants() {
+        assertIsValidCartesian(x);
+        assertIsValidCartesian(y);
+        assertIsValidCartesian(z);
     }
 }

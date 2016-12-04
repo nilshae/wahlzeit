@@ -32,7 +32,10 @@ public abstract class AbstractCoordinate implements Coordinate {
         double distanceY = this.cartesianY() - otherCoordinate.cartesianY();
         double distanceZ = this.cartesianZ() - otherCoordinate.cartesianZ();
 
-        return Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2) + Math.pow(distanceZ,2));
+        double distance = Math.sqrt(Math.pow(distanceX,2) + Math.pow(distanceY,2) + Math.pow(distanceZ,2));
+
+        assertDistanceIsValid(distance);
+        return distance;
     }
 
     /**
@@ -44,5 +47,26 @@ public abstract class AbstractCoordinate implements Coordinate {
     @Override
     public boolean isEqual(Coordinate otherCoordinate){
         return (Math.abs(this.getDistance(otherCoordinate)) < 1e-7);
+    }
+
+    /**
+     * @methodtype assertion
+     * @param distance value to check
+     */
+    private void assertDistanceIsValid(double distance) {
+        if (distance < 0) {
+            throw new IllegalArgumentException("Distance is not valid. This means that something is wrong with the calculation.");
+        }
+    }
+
+    /**
+     * @methodtype assertion
+     * @param value to check
+     */
+    protected void assertIsValidCartesian(double value) {
+        if (Double.isInfinite(value) || Double.isNaN(value))
+        {
+            throw new IllegalArgumentException("value is not valid.");
+        }
     }
 }
