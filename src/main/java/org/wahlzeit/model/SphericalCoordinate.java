@@ -134,7 +134,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
     /**
      * @methodtype assertion
      */
-    protected void assertClassInvariants() {
+    private void assertClassInvariants() {
         assertLongitudeIsValid(longitude);
         assertLatitudeIsValid(latitude);
         assertRadiusIsValid(radius);

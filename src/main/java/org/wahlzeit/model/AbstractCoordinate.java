@@ -28,6 +28,8 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate otherCoordinate) {
+        assertIsNotNull(otherCoordinate);
+
         double distanceX = this.cartesianX() - otherCoordinate.cartesianX();
         double distanceY = this.cartesianY() - otherCoordinate.cartesianY();
         double distanceZ = this.cartesianZ() - otherCoordinate.cartesianZ();
@@ -66,7 +68,17 @@ public abstract class AbstractCoordinate implements Coordinate {
     protected void assertIsValidCartesian(double value) {
         if (Double.isInfinite(value) || Double.isNaN(value))
         {
-            throw new IllegalArgumentException("value is not valid.");
+            throw new IllegalArgumentException("Value is not valid.");
+        }
+    }
+
+    /**
+     * @methodtype assertion
+     * @param otherCoordinate to check
+     */
+    protected void assertIsNotNull(Coordinate otherCoordinate) {
+        if (otherCoordinate == null) {
+            throw  new IllegalArgumentException("otherCoordinate can't be null.");
         }
     }
 }
