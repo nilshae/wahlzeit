@@ -20,6 +20,8 @@ package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.Subclass;
 
+import static org.wahlzeit.utils.AssertionUtil.*;
+
 @Subclass
 public class LampPhoto extends Photo {
 
@@ -57,6 +59,11 @@ public class LampPhoto extends Photo {
      */
     public LampPhoto(PhotoId myId, Material material, Type type, boolean vintage) {
         super(myId);
+
+        assertIsNotNull(type);
+        assertIsNotNull(material);
+        assertIsNotNull(type);
+
         this.material = material;
         this.type = type;
         this.vintage = vintage;
@@ -73,6 +80,7 @@ public class LampPhoto extends Photo {
      * @methodtype set
      */
     public void setMaterial(Material material) {
+        assertIsNotNull(material);
         this.material = material;
     }
 
@@ -87,6 +95,7 @@ public class LampPhoto extends Photo {
      * @methodtype set
      */
     public void setType(Type type) {
+        assertIsNotNull(type);
         this.type = type;
     }
 

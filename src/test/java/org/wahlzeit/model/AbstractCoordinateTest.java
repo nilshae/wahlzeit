@@ -3,6 +3,7 @@ package org.wahlzeit.model;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AbstractCoordinateTest {
@@ -36,7 +37,7 @@ public class AbstractCoordinateTest {
         Coordinate coordinate1 = new SphericalCoordinate(50.2064932, -117.1873205, 6371);
         Coordinate coordinate2 = new CartesianCoordinate(200, -100, 6371);
 
-        assertTrue(coordinate1.isEqual(coordinate2) == false);
+        assertFalse(coordinate1.isEqual(coordinate2));
     }
 
     @Test

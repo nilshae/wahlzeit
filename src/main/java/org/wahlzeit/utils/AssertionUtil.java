@@ -16,34 +16,17 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package org.wahlzeit.model;
+package org.wahlzeit.utils;
 
-import static org.wahlzeit.utils.AssertionUtil.*;
-
-/**
- * Factory for creating lamp photos and related objects.
- */
-public class LampPhotoFactory extends PhotoFactory {
-
-    // initialize the singleton instance.
-    static { instance = new LampPhotoFactory(); }
+public class AssertionUtil {
 
     /**
-     * Creates a new photo
-     *
-     * @methodtype factory
+     * @methodtype assertion
+     * @param object to check
      */
-    public Photo createPhoto() {
-        return new LampPhoto();
-    }
-
-    /**
-     * Creates a new photo with the specified id
-     *
-     * @methodtype factory
-     */
-    public Photo createPhoto(PhotoId myId) {
-        assertIsNotNull(myId);
-        return new LampPhoto(myId);
+    public static void assertIsNotNull(Object object) {
+        if (object == null) {
+            throw  new IllegalArgumentException("object can't be null.");
+        }
     }
 }

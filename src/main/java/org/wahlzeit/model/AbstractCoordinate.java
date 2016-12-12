@@ -18,6 +18,8 @@
 
 package org.wahlzeit.model;
 
+import static org.wahlzeit.utils.AssertionUtil.*;
+
 public abstract class AbstractCoordinate implements Coordinate {
 
     /**
@@ -69,16 +71,6 @@ public abstract class AbstractCoordinate implements Coordinate {
         if (Double.isInfinite(value) || Double.isNaN(value))
         {
             throw new IllegalArgumentException("Value is not valid.");
-        }
-    }
-
-    /**
-     * @methodtype assertion
-     * @param otherCoordinate to check
-     */
-    protected void assertIsNotNull(Coordinate otherCoordinate) {
-        if (otherCoordinate == null) {
-            throw  new IllegalArgumentException("otherCoordinate can't be null.");
         }
     }
 }
