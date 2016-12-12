@@ -18,6 +18,8 @@
 
 package org.wahlzeit.model;
 
+import static org.wahlzeit.utils.AssertionUtil.*;
+
 public class Location {
     private final Coordinate coordinate;
 
@@ -27,6 +29,7 @@ public class Location {
      * @param coordinate of this Location
      */
     public Location(Coordinate coordinate) {
+        assertIsNotNull(coordinate);
         this.coordinate = coordinate;
     }
 
