@@ -36,7 +36,7 @@ public class LampPhoto extends Photo {
      * Constructor of the LampPhoto class.
      * @methodtype constructor
      */
-    public LampPhoto() {
+    public LampPhoto() throws IllegalArgumentException {
         this(PhotoId.getNextId());
     }
 
@@ -45,7 +45,7 @@ public class LampPhoto extends Photo {
      * @param myId
      * @methodtype constructor
      */
-    public LampPhoto(PhotoId myId) {
+    public LampPhoto(PhotoId myId) throws IllegalArgumentException{
         this(myId, Material.OTHER, Type.NOT_DEFINED, false);
     }
 
@@ -57,7 +57,7 @@ public class LampPhoto extends Photo {
      * @param myId
      * @methodtype constructor
      */
-    public LampPhoto(PhotoId myId, Material material, Type type, boolean vintage) {
+    public LampPhoto(PhotoId myId, Material material, Type type, boolean vintage) throws IllegalArgumentException{
         super(myId);
 
         assertIsNotNull(type);
@@ -79,7 +79,7 @@ public class LampPhoto extends Photo {
     /**
      * @methodtype set
      */
-    public void setMaterial(Material material) {
+    public void setMaterial(Material material) throws IllegalArgumentException {
         assertIsNotNull(material);
         this.material = material;
     }
@@ -94,7 +94,7 @@ public class LampPhoto extends Photo {
     /**
      * @methodtype set
      */
-    public void setType(Type type) {
+    public void setType(Type type) throws IllegalArgumentException {
         assertIsNotNull(type);
         this.type = type;
     }
@@ -109,7 +109,7 @@ public class LampPhoto extends Photo {
     /**
      * @methodtype set
      */
-    public void setVintage(boolean vintage) {
+    public void setVintage(boolean vintage) throws IllegalArgumentException {
         this.vintage = vintage;
     }
 }

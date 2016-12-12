@@ -28,7 +28,7 @@ public class Location {
      * @methodtype constructor
      * @param coordinate of this Location
      */
-    public Location(Coordinate coordinate) {
+    public Location(Coordinate coordinate) throws IllegalArgumentException {
         assertIsNotNull(coordinate);
         this.coordinate = coordinate;
     }

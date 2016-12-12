@@ -29,7 +29,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return shortest distance between the two Coordinates
      */
     @Override
-    public double getDistance(Coordinate otherCoordinate) {
+    public double getDistance(Coordinate otherCoordinate) throws IllegalArgumentException {
         assertIsNotNull(otherCoordinate);
 
         double distanceX = this.cartesianX() - otherCoordinate.cartesianX();
@@ -49,7 +49,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return if equal or not
      */
     @Override
-    public boolean isEqual(Coordinate otherCoordinate){
+    public boolean isEqual(Coordinate otherCoordinate) throws IllegalArgumentException{
         return (Math.abs(this.getDistance(otherCoordinate)) < 1e-7);
     }
 
@@ -57,7 +57,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @methodtype assertion
      * @param distance value to check
      */
-    private void assertDistanceIsValid(double distance) {
+    private void assertDistanceIsValid(double distance) throws IllegalArgumentException {
         if (distance < 0) {
             throw new IllegalArgumentException("Distance is not valid. This means that something is wrong with the calculation.");
         }
@@ -67,7 +67,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @methodtype assertion
      * @param value to check
      */
-    protected void assertIsValidCartesian(double value) {
+    protected void assertIsValidCartesian(double value) throws IllegalArgumentException {
         if (Double.isInfinite(value) || Double.isNaN(value))
         {
             throw new IllegalArgumentException("Value is not valid.");

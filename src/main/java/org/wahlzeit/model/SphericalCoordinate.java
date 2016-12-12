@@ -30,7 +30,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
      * @param longitude in degree
      * @param radius in km
      */
-    public SphericalCoordinate(double latitude, double longitude, double radius) {
+    public SphericalCoordinate(double latitude, double longitude, double radius) throws IllegalArgumentException {
         assertLatitudeIsValid(latitude);
         assertLongitudeIsValid(longitude);
         assertRadiusIsValid(radius);
@@ -125,7 +125,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
      * @methodtype assertion
      * @param radius value to check
      */
-    private void assertRadiusIsValid(double radius) {
+    private void assertRadiusIsValid(double radius) throws IllegalArgumentException {
         if (radius < 0) {
             throw new IllegalArgumentException("radius is negative.");
         }
@@ -134,7 +134,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
     /**
      * @methodtype assertion
      */
-    private void assertClassInvariants() {
+    private void assertClassInvariants() throws IllegalArgumentException {
         assertLongitudeIsValid(longitude);
         assertLatitudeIsValid(latitude);
         assertRadiusIsValid(radius);

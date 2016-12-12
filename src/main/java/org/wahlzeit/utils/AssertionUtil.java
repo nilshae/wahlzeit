@@ -24,7 +24,7 @@ public class AssertionUtil {
      * @methodtype assertion
      * @param object to check
      */
-    public static void assertIsNotNull(Object object) {
+    public static void assertIsNotNull(Object object) throws IllegalArgumentException{
         if (object == null) {
             throw  new IllegalArgumentException("object can't be null.");
         }
