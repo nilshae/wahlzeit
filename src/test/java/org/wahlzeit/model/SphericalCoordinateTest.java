@@ -2,12 +2,42 @@ package org.wahlzeit.model;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Test class for {@link SphericalCoordinate}.
  */
 public class SphericalCoordinateTest {
+    @Test
+    public void testEquals() {
+        SphericalCoordinate firstCoordinate = SphericalCoordinate.getInstance(90, 170, 6371);
+        SphericalCoordinate secondCoordinate = SphericalCoordinate.getInstance(90, 170, 6371);
+
+        assertTrue(firstCoordinate.equals(secondCoordinate));
+        assertTrue(secondCoordinate.equals(firstCoordinate));
+        assertTrue(firstCoordinate == secondCoordinate);
+    }
+
+    @Test
+    public void testEqualsNot() {
+        SphericalCoordinate firstCoordinate = SphericalCoordinate.getInstance(90, 170, 6371);
+        SphericalCoordinate secondCoordinate = SphericalCoordinate.getInstance(10, 170, 6371);
+
+        assertFalse(firstCoordinate.equals(secondCoordinate));
+        assertFalse(secondCoordinate.equals(firstCoordinate));
+        assertFalse(firstCoordinate == secondCoordinate);
+    }
+
+    @Test
+    public void testHashCode() {
+        SphericalCoordinate firstCoordinate = SphericalCoordinate.getInstance(90, 170, 6371);
+        SphericalCoordinate secondCoordinate = SphericalCoordinate.getInstance(90, 170, 6371);
+        SphericalCoordinate thirdCoordinate = SphericalCoordinate.getInstance(10, 170, 6371);
+
+        assertEquals(firstCoordinate, secondCoordinate);
+        assertEquals(firstCoordinate, firstCoordinate);
+        assertNotEquals(firstCoordinate, thirdCoordinate);
+    }
 
     @Test
     public void testConstructor() {
