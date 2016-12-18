@@ -18,15 +18,15 @@ public class AbstractCoordinateTest {
 
     @Test
     public void testIsEqualCartesianCoordinates() {
-        Coordinate coordinate1 = new CartesianCoordinate(200, -100, 6371);
-        Coordinate coordinate2 = new CartesianCoordinate(200, -100, 6371);
+        Coordinate coordinate1 = CartesianCoordinate.getInstance(200, -100, 6371);
+        Coordinate coordinate2 = CartesianCoordinate.getInstance(200, -100, 6371);
 
         assertTrue(coordinate1.isEqual(coordinate2));
     }
 
     @Test
     public void testIsEqualDifferentTypes() {
-        Coordinate coordinate1 = new CartesianCoordinate(6371, 0, 0);
+        Coordinate coordinate1 = CartesianCoordinate.getInstance(6371, 0, 0);
         Coordinate coordinate2 = new SphericalCoordinate(0, 0, 6371);
 
         assertTrue(coordinate1.isEqual(coordinate2));
@@ -35,7 +35,7 @@ public class AbstractCoordinateTest {
     @Test
     public void testIsEqualDifferentCoordinatesTypes() {
         Coordinate coordinate1 = new SphericalCoordinate(50.2064932, -117.1873205, 6371);
-        Coordinate coordinate2 = new CartesianCoordinate(200, -100, 6371);
+        Coordinate coordinate2 = CartesianCoordinate.getInstance(200, -100, 6371);
 
         assertFalse(coordinate1.isEqual(coordinate2));
     }
@@ -55,8 +55,8 @@ public class AbstractCoordinateTest {
         // This is only a simple test, because the getDistance() extensively
         // tested in SphericalCoordinateTest
 
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(6371, 0, 0);
-        CartesianCoordinate coordinate2 = new CartesianCoordinate(0, 6371, 0);
+        CartesianCoordinate coordinate1 = CartesianCoordinate.getInstance(6371, 0, 0);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getInstance(0, 6371, 0);
 
         double distance = coordinate1.getDistance(coordinate2);
 
@@ -65,7 +65,7 @@ public class AbstractCoordinateTest {
 
     @Test
     public void testGetDistanceDifferentTypes() {
-        Coordinate coordinate1 = new CartesianCoordinate(6371, 0, 0);
+        Coordinate coordinate1 = CartesianCoordinate.getInstance(6371, 0, 0);
         Coordinate coordinate2 = new SphericalCoordinate(0, 0, 6371);
 
         assertEquals(0, coordinate1.getDistance(coordinate2), 0);

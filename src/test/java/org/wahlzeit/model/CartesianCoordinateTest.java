@@ -8,7 +8,7 @@ public class CartesianCoordinateTest {
 
     @Test
     public void testConstructor() {
-        CartesianCoordinate coordinate = new CartesianCoordinate(-6371, 0, 0);
+        CartesianCoordinate coordinate = CartesianCoordinate.getInstance(-6371, 0, 0);
 
         assertEquals(-6371, coordinate.getX(), 0);
         assertEquals(0, coordinate.getY(), 0);
@@ -17,7 +17,7 @@ public class CartesianCoordinateTest {
 
     @Test
     public void testGetCartesianCoordinates() {
-        Coordinate coordinate = new CartesianCoordinate(0, 0, 6371);
+        Coordinate coordinate = CartesianCoordinate.getInstance(0, 0, 6371);
 
         double x = coordinate.cartesianX();
         double y = coordinate.cartesianY();

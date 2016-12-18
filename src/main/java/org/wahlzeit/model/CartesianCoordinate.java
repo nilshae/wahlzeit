@@ -18,11 +18,15 @@
 
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+
 public class CartesianCoordinate extends AbstractCoordinate {
 
     private final double x;
     private final double y;
     private final double z;
+
+    private static final HashMap<CartesianCoordinate, CartesianCoordinate> instances = new HashMap<>();
 
     /**
      * This is the standard constructor of the CartesianCoordinate class.
@@ -31,7 +35,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @param y
      * @param z
      */
-    public CartesianCoordinate(double x, double y, double z) {
+    private CartesianCoordinate(double x, double y, double z) {
         assertIsValidCartesian(x);
         assertIsValidCartesian(y);
         assertIsValidCartesian(z);
@@ -39,6 +43,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    /**
+     * Returns the CartesianCoordinate with the values x, y and z. Creates a new one, if
+     * there is non existing.
+     * @param x
+     * @param y
+     * @param z
+     * @return CartesianCoordinate
+     */
+    public static CartesianCoordinate getInstance(double x, double y, double z) {
+        CartesianCoordinate coordinate = new CartesianCoordinate(x, y, z);
+
+        synchronized (instances) {
+            if (!instances.containsValue(coordinate)) {
+                instances.put(coordinate, coordinate);
+            }
+            return instances.get(coordinate);
+        }
     }
 
     /**
