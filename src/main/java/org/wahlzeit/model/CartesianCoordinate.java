@@ -39,8 +39,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.x = x;
         this.y = y;
         this.z = z;
-
-        assertClassInvariants();
     }
 
     /**
@@ -80,14 +78,5 @@ public class CartesianCoordinate extends AbstractCoordinate {
     @Override
     public double cartesianZ() {
         return getZ();
-    }
-
-    /**
-     * @methodtype assertion
-     */
-    protected void assertClassInvariants() throws IllegalArgumentException{
-        assertIsValidCartesian(x);
-        assertIsValidCartesian(y);
-        assertIsValidCartesian(z);
     }
 }

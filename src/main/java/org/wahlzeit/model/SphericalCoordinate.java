@@ -38,8 +38,6 @@ public class SphericalCoordinate extends AbstractCoordinate {
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
-
-        assertClassInvariants();
     }
 
     /**
@@ -76,7 +74,6 @@ public class SphericalCoordinate extends AbstractCoordinate {
         double xValue = radius * Math.cos(latitudeRadian) * Math.cos(longitudeRadian);
 
         assertIsValidCartesian(xValue);
-        assertClassInvariants();
         return xValue;
     }
 
@@ -87,7 +84,6 @@ public class SphericalCoordinate extends AbstractCoordinate {
         double yValue = radius * Math.cos(latitudeRadian) * Math.sin(longitudeRadian);
         
         assertIsValidCartesian(yValue);
-        assertClassInvariants();
         return yValue;
     }
 
@@ -97,7 +93,6 @@ public class SphericalCoordinate extends AbstractCoordinate {
         double zValue = radius * Math.sin(latitudeRadian);
 
         assertIsValidCartesian(zValue);
-        assertClassInvariants();
         return zValue;
     }
 
@@ -130,14 +125,4 @@ public class SphericalCoordinate extends AbstractCoordinate {
             throw new IllegalArgumentException("radius is negative.");
         }
     }
-
-    /**
-     * @methodtype assertion
-     */
-    private void assertClassInvariants() throws IllegalArgumentException {
-        assertLongitudeIsValid(longitude);
-        assertLatitudeIsValid(latitude);
-        assertRadiusIsValid(radius);
-    }
-
 }
