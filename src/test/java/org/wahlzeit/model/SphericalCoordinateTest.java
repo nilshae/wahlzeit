@@ -34,9 +34,9 @@ public class SphericalCoordinateTest {
         SphericalCoordinate secondCoordinate = SphericalCoordinate.getInstance(90, 170, 6371);
         SphericalCoordinate thirdCoordinate = SphericalCoordinate.getInstance(10, 170, 6371);
 
-        assertEquals(firstCoordinate, secondCoordinate);
-        assertEquals(firstCoordinate, firstCoordinate);
-        assertNotEquals(firstCoordinate, thirdCoordinate);
+        assertEquals(firstCoordinate.hashCode(), secondCoordinate.hashCode());
+        assertEquals(firstCoordinate.hashCode(), firstCoordinate.hashCode());
+        assertNotEquals(firstCoordinate.hashCode(), thirdCoordinate.hashCode());
     }
 
     @Test

@@ -31,9 +31,9 @@ public class CartesianCoordinateTest {
         CartesianCoordinate secondCoordinate = CartesianCoordinate.getInstance(0, 0, 6371);
         CartesianCoordinate thirdCoordinate = CartesianCoordinate.getInstance(10, 0, 6371);
 
-        assertEquals(firstCoordinate, secondCoordinate);
-        assertEquals(firstCoordinate, firstCoordinate);
-        assertNotEquals(firstCoordinate, thirdCoordinate);
+        assertEquals(firstCoordinate.hashCode(), secondCoordinate.hashCode());
+        assertEquals(firstCoordinate.hashCode(), firstCoordinate.hashCode());
+        assertNotEquals(firstCoordinate.hashCode(), thirdCoordinate.hashCode());
     }
 
     @Test
