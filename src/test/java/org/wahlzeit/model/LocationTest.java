@@ -11,7 +11,7 @@ public class LocationTest {
 
     @Test
     public void testConstructor() {
-        Coordinate testCoordinate = new SphericalCoordinate(0.0, 0.0, 6371);
+        Coordinate testCoordinate = SphericalCoordinate.getInstance(0.0, 0.0, 6371);
         Location testLocation = new Location(testCoordinate);
 
         assertEquals(testCoordinate, testLocation.getCoordinate());

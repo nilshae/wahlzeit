@@ -18,10 +18,14 @@
 
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+
 public class SphericalCoordinate extends AbstractCoordinate {
     private final double latitude;
     private final double longitude;
     private final double radius;
+
+    private static final HashMap<SphericalCoordinate, SphericalCoordinate> instances = new HashMap<>();
 
     /**
      * This is the standard constructor of the SphericalCoordinate class.
@@ -30,7 +34,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
      * @param longitude in degree
      * @param radius in km
      */
-    public SphericalCoordinate(double latitude, double longitude, double radius) {
+    private SphericalCoordinate(double latitude, double longitude, double radius) {
         assertLatitudeIsValid(latitude);
         assertLongitudeIsValid(longitude);
         assertRadiusIsValid(radius);
@@ -38,6 +42,25 @@ public class SphericalCoordinate extends AbstractCoordinate {
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
+    }
+
+    /**
+     * Returns the SphericalCoordinate with the values x, y and z. Creates a new one, if
+     * there is non existing.
+     * @param latitude
+     * @param longitude
+     * @param radius
+     * @return SphericalCoordinate
+     */
+    public static SphericalCoordinate getInstance(double latitude, double longitude, double radius) {
+        SphericalCoordinate coordinate = new SphericalCoordinate(latitude, longitude, radius);
+
+        synchronized (instances) {
+            if (!instances.containsValue(coordinate)) {
+                instances.put(coordinate, coordinate);
+            }
+            return instances.get(coordinate);
+        }
     }
 
     /**

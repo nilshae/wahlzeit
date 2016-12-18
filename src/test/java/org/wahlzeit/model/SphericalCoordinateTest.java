@@ -11,7 +11,7 @@ public class SphericalCoordinateTest {
 
     @Test
     public void testConstructor() {
-        SphericalCoordinate coordinate = new SphericalCoordinate(90, 170, 6371);
+        SphericalCoordinate coordinate = SphericalCoordinate.getInstance(90, 170, 6371);
 
         assertEquals(90, coordinate.getLatitude(), 0);
         assertEquals(170, coordinate.getLongitude(), 0);
@@ -20,32 +20,32 @@ public class SphericalCoordinateTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testUpperBoundLatitude() {
-        Coordinate coordinate = new SphericalCoordinate(100, 160, 6371);
+        Coordinate coordinate = SphericalCoordinate.getInstance(100, 160, 6371);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testLowerBoundLatitude() {
-        Coordinate coordinate = new SphericalCoordinate(-100, 160, 6371);
+        Coordinate coordinate = SphericalCoordinate.getInstance(-100, 160, 6371);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testUpperBoundLongitude() {
-        Coordinate coordinate = new SphericalCoordinate(50, 200, 6371);
+        Coordinate coordinate = SphericalCoordinate.getInstance(50, 200, 6371);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testLowerBoundLongitude() {
-        Coordinate coordinate = new SphericalCoordinate(50, -200, 6371);
+        Coordinate coordinate = SphericalCoordinate.getInstance(50, -200, 6371);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeRadius() {
-        Coordinate coordinate = new SphericalCoordinate(50, -100, -6371);
+        Coordinate coordinate = SphericalCoordinate.getInstance(50, -100, -6371);
     }
 
     @Test
     public void testGetCartesianCoordinates() {
-        Coordinate coordinate = new SphericalCoordinate(0, 0, 6371);
+        Coordinate coordinate = SphericalCoordinate.getInstance(0, 0, 6371);
 
         double x = coordinate.cartesianX();
         double y = coordinate.cartesianY();
