@@ -31,7 +31,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @param y
      * @param z
      */
-    public CartesianCoordinate(double x, double y, double z) throws IllegalArgumentException{
+    public CartesianCoordinate(double x, double y, double z) {
         assertIsValidCartesian(x);
         assertIsValidCartesian(y);
         assertIsValidCartesian(z);

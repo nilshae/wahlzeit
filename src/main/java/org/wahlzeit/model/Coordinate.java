@@ -46,7 +46,7 @@ public interface Coordinate {
      * @param otherCoordinate the Coordinate to calculate the distance with.
      * @return shortest distance between the two Coordinates
      */
-    double getDistance(Coordinate otherCoordinate) throws IllegalArgumentException;
+    double getDistance(Coordinate otherCoordinate);
 
     /**
      * Test if two Coordinates have the same location with respect to an error.
@@ -54,5 +54,5 @@ public interface Coordinate {
      * @param otherCoordinate the Coordinate to check with
      * @return true if equal or false if not
      */
-    boolean isEqual(Coordinate otherCoordinate) throws IllegalArgumentException;
+    boolean isEqual(Coordinate otherCoordinate);
 }
