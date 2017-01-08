@@ -18,9 +18,16 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 /**
  * A lamp photo manager provides access to and manages lamp photos.
  */
+@PatternInstance(
+        patternName = "Singleton",
+        participants = {"Singleton"},
+        role = "Singleton"
+)
 public class LampPhotoManager extends PhotoManager {
 
     // initialize the singleton instance.
