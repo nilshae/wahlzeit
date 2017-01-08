@@ -6,4 +6,5 @@ import java.lang.annotation.Documented;
 public @interface PatternInstance {
     String patternName();
     String[] participants();
+    String role();
 }
