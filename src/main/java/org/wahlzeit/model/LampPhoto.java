@@ -19,9 +19,20 @@
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.annotation.Subclass;
+import org.wahlzeit.utils.PatternInstance;
 
 import static org.wahlzeit.utils.AssertionUtil.*;
 
+@PatternInstance(
+        patternName = "Abstract Factory",
+        participants = {
+                "AbstractFactory",
+                "AbstractProduct",
+                "ConcreteFactory",
+                "ConcreteProduct"
+        },
+        role = "ConcreteProduct"
+)
 @Subclass
 public class LampPhoto extends Photo {
 

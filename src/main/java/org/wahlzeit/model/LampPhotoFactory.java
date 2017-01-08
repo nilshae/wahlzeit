@@ -18,11 +18,23 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import static org.wahlzeit.utils.AssertionUtil.*;
 
 /**
  * Factory for creating lamp photos and related objects.
  */
+@PatternInstance(
+        patternName = "Abstract Factory",
+        participants = {
+                "AbstractFactory",
+                "AbstractProduct",
+                "ConcreteFactory",
+                "ConcreteProduct"
+        },
+        role = "ConcreteFactory"
+)
 public class LampPhotoFactory extends PhotoFactory {
 
     // initialize the singleton instance.
