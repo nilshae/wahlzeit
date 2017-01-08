@@ -18,8 +18,15 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.util.HashMap;
 
+@PatternInstance(
+        patternName = "ValueObject",
+        participants = {"ValueObject"},
+        role = "ValueObject"
+)
 public class SphericalCoordinate extends AbstractCoordinate {
     private final double latitude;
     private final double longitude;
@@ -75,7 +82,7 @@ public class SphericalCoordinate extends AbstractCoordinate {
     /**
      * Returns the longitude.
      * @methodtype get
-     * @return longitude in degree
+     * @return longitude in degreef
      */
     public double getLongitude() {
         return this.longitude;

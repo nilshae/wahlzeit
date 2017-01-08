@@ -18,8 +18,15 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import java.util.HashMap;
 
+@PatternInstance(
+        patternName = "ValueObject",
+        participants = {"ValueObject"},
+        role = "ValueObject"
+)
 public class CartesianCoordinate extends AbstractCoordinate {
 
     private final double x;
