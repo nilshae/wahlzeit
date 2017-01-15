@@ -18,9 +18,13 @@
 
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.Work;
+import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.ObjectManager;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 import static org.wahlzeit.utils.AssertionUtil.assertIsNotEmptyString;
 import static org.wahlzeit.utils.AssertionUtil.assertIsNotNull;
@@ -28,6 +32,9 @@ import static org.wahlzeit.utils.AssertionUtil.assertIsNotNull;
 public class LampManager extends ObjectManager {
     protected static LampManager instance = new LampManager();
     protected Map<Integer, Lamp> lamps = new HashMap<>();
+    private HashMap<String, LampType> lampTypes = new HashMap<>();
+
+    private static final Logger log = Logger.getLogger(LampManager.class.getName());
 
     /**
      * @methodtype constructor
@@ -44,17 +51,38 @@ public class LampManager extends ObjectManager {
     }
 
     /**
+     * @methodtype command
+     */
+    public void init() {
+        loadLampTypes();
+        loadLamps();
+    }
+
+    /**
      * @methodtype factory method
      */
     public Lamp createLamp(String modelName, LampType.Material material, LampType.Kind kind, boolean vintage) {
-        assertIsNotEmptyString(modelName);
+        LampType lampType = createLampType(modelName, material, kind, vintage);
+        Lamp lampInstance = lampType.createInstance();
+        updateObject(lampInstance);
+        doAddLamp(lampInstance);
+
+        return lampInstance;
+    }
+
+    /**
+     * @methodtype factory method
+     */
+    public LampType createLampType(String modelName, LampType.Material material, LampType.Kind kind, boolean vintage) {
+        assertIsValidModelName(modelName);
         assertIsNotNull(material);
         assertIsNotNull(kind);
 
         LampType lampType = new LampType(modelName, material, kind, vintage);
-        Lamp lampInstance = lampType.createInstance();
-        lamps.put(lampInstance.getId(), lampInstance);
-        return lampInstance;
+        updateObject(lampType);
+        lampTypes.put(lampType.getModelName(), lampType);
+
+        return lampType;
     }
 
     /**
@@ -77,12 +105,93 @@ public class LampManager extends ObjectManager {
     }
 
     /**
+     * @methodtype command
+     */
+    public void addLampType(LampType lampType) {
+        String modelName = lampType.getModelName();
+        assertIsNewLampType(modelName);
+        doAddLampType(lampType);
+
+        GlobalsManager.getInstance().saveGlobals();
+    }
+
+    /**
+     * @methodtype command
+     * @methodproperties primitive
+     */
+    protected void doAddLampType(LampType lampType) {
+        lampTypes.put(lampType.getModelName(), lampType);
+    }
+
+    /**
+     * @methodtype command
+     *
+     * Load all persisted lamps. Executed when Wahlzeit is restarted.
+     */
+    public void loadLamps() {
+        Collection<Lamp> existingLamps = ObjectifyService.run(new Work<Collection<Lamp>>() {
+            @Override
+            public Collection<Lamp> run() {
+                Collection<Lamp> existingLamps = new ArrayList<>();
+                readObjects(existingLamps, Lamp.class);
+                return existingLamps;
+            }
+        });
+
+        for(Lamp lamp : existingLamps) {
+            lamps.put(lamp.getId(), lamp);
+        }
+
+        log.info(LogBuilder.createSystemMessage().addMessage("All lamps loaded.").toString());
+    }
+
+    /**
+     * @methodtype command
+     *
+     * Load all persisted lamp types. Executed when Wahlzeit is restarted.
+     */
+    public void loadLampTypes() {
+        Collection<LampType> existingLampTypes = ObjectifyService.run(new Work<Collection<LampType>>() {
+            @Override
+            public Collection<LampType> run() {
+                Collection<LampType> existingLampTypes = new ArrayList<>();
+                readObjects(existingLampTypes, LampType.class);
+                return existingLampTypes;
+            }
+        });
+
+        for(LampType lampType : existingLampTypes) {
+            lampTypes.put(lampType.getModelName(), lampType);
+        }
+
+        log.info(LogBuilder.createSystemMessage().addMessage("All lamp types loaded.").toString());
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    private void assertIsValidModelName(String modelName) {
+        assertIsNotEmptyString(modelName);
+        if (lampTypes.containsKey(modelName)) {
+            throw new IllegalArgumentException("ArchitectureType with name " + modelName + " already exists");
+        }
+    }
+
+    /**
      * @methodtype assertion
      */
     protected void assertIsNewLamp(Integer id) {
-        // FIXME: hasLamp has to be implemented (this will be done when the ID problem is solved)
-        // if (hasLamp(id)) {
-        //     throw new IllegalStateException("Lamp already exists!");
-        // }
+        if (lamps.containsKey(id)) {
+            throw new IllegalStateException("Lamp already exists!");
+        }
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertIsNewLampType(String modelName) {
+        if (lamps.containsKey(modelName)) {
+            throw new IllegalStateException("LampType already exists!");
+        }
     }
 }

@@ -18,7 +18,12 @@
 
 package org.wahlzeit.model;
 
-public class Lamp {
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Subclass;
+import org.wahlzeit.services.DataObject;
+
+@Subclass
+public class Lamp extends DataObject {
     protected LampType lampType = null;
 
     /**

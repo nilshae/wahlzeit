@@ -18,7 +18,10 @@
 
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Serialize;
+import com.googlecode.objectify.annotation.Subclass;
+import org.wahlzeit.services.DataObject;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,17 +30,20 @@ import java.util.Set;
 import static org.wahlzeit.utils.AssertionUtil.assertIsNotNull;
 
 @Serialize
-public class LampType {
+@Subclass
+public class LampType extends DataObject {
     public enum Material {METAL, WOOD, PLASTIC, UNDEFINED}
     public enum Kind {FLOOR_LAMP, HANGING_LAMP, TABLE_LAMP, STREET_LAMP, UNDEFINED}
 
     protected LampType superType = null;
     protected Set<LampType> subTypes = new HashSet<>();
 
-    private final String modelName;
-    private final Material material;
-    private final Kind kind;
-    private final boolean vintage;
+    private String modelName;
+    private Material material;
+    private Kind kind;
+    private boolean vintage;
+
+    public LampType() {};
 
     /**
      * @methodtype constructor
