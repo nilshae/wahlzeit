@@ -29,4 +29,14 @@ public class AssertionUtil {
             throw  new IllegalArgumentException("object can't be null.");
         }
     }
+
+    /**
+     * @methodtype assertion
+     * @param string to check
+     */
+    public static void assertIsNotEmptyString(String string) throws IllegalArgumentException{
+        if (string.isEmpty()) {
+            throw  new IllegalArgumentException("string can't be empty.");
+        }
+    }
 }
