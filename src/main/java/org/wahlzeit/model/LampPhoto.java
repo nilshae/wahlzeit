@@ -21,6 +21,8 @@ package org.wahlzeit.model;
 import com.googlecode.objectify.annotation.Subclass;
 import org.wahlzeit.utils.PatternInstance;
 
+import java.util.Date;
+
 import static org.wahlzeit.utils.AssertionUtil.*;
 
 @PatternInstance(
@@ -35,92 +37,36 @@ import static org.wahlzeit.utils.AssertionUtil.*;
 )
 @Subclass
 public class LampPhoto extends Photo {
-
-    public enum Material {METAL, WOOD, PLASTIC, OTHER}
-    public enum Type {FLOOR_LAMP, HANGING_LAMP, TABLE_LAMP, STREET_LAMP, NOT_DEFINED}
-
-    private Material material;
-    private Type type;
-    private boolean vintage;
-
-    /**
-     * Constructor of the LampPhoto class.
-     * @methodtype constructor
-     */
-    public LampPhoto() {
-        this(PhotoId.getNextId());
-    }
-
-    /**
-     * Constructor of the LampPhoto class.
-     * @param myId
-     * @methodtype constructor
-     */
-    public LampPhoto(PhotoId myId) {
-        this(myId, Material.OTHER, Type.NOT_DEFINED, false);
-    }
+    private Lamp lamp;
 
     /**
      * This is the standard constructor of the LampPhoto class.
      * @param myId
-     * @param myId
-     * @param myId
-     * @param myId
      * @methodtype constructor
      */
-    public LampPhoto(PhotoId myId, Material material, Type type, boolean vintage) {
+    public LampPhoto(PhotoId myId) {
         super(myId);
+    }
 
-        assertIsNotNull(type);
-        assertIsNotNull(material);
-        assertIsNotNull(type);
-
-        this.material = material;
-        this.type = type;
-        this.vintage = vintage;
+    /**
+     * This is the a constructor of the LampPhoto class.
+     * @methodtype constructor
+     */
+    public LampPhoto() {
+        super(PhotoId.getNextId());
     }
 
     /**
      * @methodtype get
      */
-    public Material getMaterial() {
-        return material;
+    public Lamp getLamp() {
+        return lamp;
     }
 
     /**
      * @methodtype set
      */
-    public void setMaterial(Material material) {
-        assertIsNotNull(material);
-        this.material = material;
-    }
-
-    /**
-     * @methodtype get
-     */
-    public Type getType() {
-        return type;
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setType(Type type) {
-        assertIsNotNull(type);
-        this.type = type;
-    }
-
-    /**
-     * @methodtype get
-     */
-    public boolean isVintage() {
-        return vintage;
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setVintage(boolean vintage) {
-        this.vintage = vintage;
+    public void setLamp(Lamp lamp) {
+        this.lamp = lamp;
     }
 }

@@ -19,4 +19,27 @@
 package org.wahlzeit.model;
 
 public class Lamp {
+    protected LampType lampType = null;
+
+    /**
+     * @methodtype constructor
+     */
+    public Lamp(LampType lampType) {
+        this.lampType = lampType;
+    }
+
+    /**
+     * @methodtype get
+     */
+    public LampType getType() {
+        return lampType;
+    }
+
+    /**
+     * @methodtype get
+     */
+    public Integer getId() {
+        // this is a simple implementation and will be changed in the future
+        return hashCode();
+    }
 }
