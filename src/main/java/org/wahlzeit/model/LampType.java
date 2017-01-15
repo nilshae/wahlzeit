@@ -38,12 +38,10 @@ public class LampType extends DataObject {
     protected LampType superType = null;
     protected Set<LampType> subTypes = new HashSet<>();
 
-    private String modelName;
-    private Material material;
-    private Kind kind;
-    private boolean vintage;
-
-    public LampType() {};
+    private final String modelName;
+    private final Material material;
+    private final Kind kind;
+    private final boolean vintage;
 
     /**
      * @methodtype constructor

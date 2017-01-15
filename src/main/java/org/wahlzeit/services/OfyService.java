@@ -29,7 +29,6 @@ public class OfyService {
 		factory().register(PhotoCase.class);
 		factory().register(ImageWrapper.class);
 		factory().register(Lamp.class);
-		factory().register(LampType.class);
 	}
 
 	public static Objectify ofy() {

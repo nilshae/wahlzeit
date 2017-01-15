@@ -32,7 +32,6 @@ import static org.wahlzeit.utils.AssertionUtil.assertIsNotNull;
 public class LampManager extends ObjectManager {
     protected static LampManager instance = new LampManager();
     protected Map<Integer, Lamp> lamps = new HashMap<>();
-    private HashMap<String, LampType> lampTypes = new HashMap<>();
 
     private static final Logger log = Logger.getLogger(LampManager.class.getName());
 
@@ -54,7 +53,6 @@ public class LampManager extends ObjectManager {
      * @methodtype command
      */
     public void init() {
-        loadLampTypes();
         loadLamps();
     }
 
@@ -62,27 +60,16 @@ public class LampManager extends ObjectManager {
      * @methodtype factory method
      */
     public Lamp createLamp(String modelName, LampType.Material material, LampType.Kind kind, boolean vintage) {
-        LampType lampType = createLampType(modelName, material, kind, vintage);
-        Lamp lampInstance = lampType.createInstance();
-        updateObject(lampInstance);
-        doAddLamp(lampInstance);
-
-        return lampInstance;
-    }
-
-    /**
-     * @methodtype factory method
-     */
-    public LampType createLampType(String modelName, LampType.Material material, LampType.Kind kind, boolean vintage) {
         assertIsValidModelName(modelName);
         assertIsNotNull(material);
         assertIsNotNull(kind);
 
         LampType lampType = new LampType(modelName, material, kind, vintage);
-        updateObject(lampType);
-        lampTypes.put(lampType.getModelName(), lampType);
+        Lamp lampInstance = lampType.createInstance();
+        updateObject(lampInstance);
+        doAddLamp(lampInstance);
 
-        return lampType;
+        return lampInstance;
     }
 
     /**
@@ -102,25 +89,6 @@ public class LampManager extends ObjectManager {
      */
     protected void doAddLamp(Lamp lamp) {
         lamps.put(lamp.getId(), lamp);
-    }
-
-    /**
-     * @methodtype command
-     */
-    public void addLampType(LampType lampType) {
-        String modelName = lampType.getModelName();
-        assertIsNewLampType(modelName);
-        doAddLampType(lampType);
-
-        GlobalsManager.getInstance().saveGlobals();
-    }
-
-    /**
-     * @methodtype command
-     * @methodproperties primitive
-     */
-    protected void doAddLampType(LampType lampType) {
-        lampTypes.put(lampType.getModelName(), lampType);
     }
 
     /**
@@ -146,35 +114,13 @@ public class LampManager extends ObjectManager {
     }
 
     /**
-     * @methodtype command
-     *
-     * Load all persisted lamp types. Executed when Wahlzeit is restarted.
-     */
-    public void loadLampTypes() {
-        Collection<LampType> existingLampTypes = ObjectifyService.run(new Work<Collection<LampType>>() {
-            @Override
-            public Collection<LampType> run() {
-                Collection<LampType> existingLampTypes = new ArrayList<>();
-                readObjects(existingLampTypes, LampType.class);
-                return existingLampTypes;
-            }
-        });
-
-        for(LampType lampType : existingLampTypes) {
-            lampTypes.put(lampType.getModelName(), lampType);
-        }
-
-        log.info(LogBuilder.createSystemMessage().addMessage("All lamp types loaded.").toString());
-    }
-
-    /**
      * @methodtype assertion
      */
     private void assertIsValidModelName(String modelName) {
         assertIsNotEmptyString(modelName);
-        if (lampTypes.containsKey(modelName)) {
-            throw new IllegalArgumentException("ArchitectureType with name " + modelName + " already exists");
-        }
+        // if (lampTypes.containsKey(modelName)) {
+        //     throw new IllegalArgumentException("ArchitectureType with name " + modelName + " already exists");
+        // }
     }
 
     /**
@@ -183,15 +129,6 @@ public class LampManager extends ObjectManager {
     protected void assertIsNewLamp(Integer id) {
         if (lamps.containsKey(id)) {
             throw new IllegalStateException("Lamp already exists!");
-        }
-    }
-
-    /**
-     * @methodtype assertion
-     */
-    protected void assertIsNewLampType(String modelName) {
-        if (lamps.containsKey(modelName)) {
-            throw new IllegalStateException("LampType already exists!");
         }
     }
 }
