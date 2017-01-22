@@ -54,8 +54,10 @@ public class LampPhotoFactory extends PhotoFactory {
      *
      * @methodtype factory
      */
+    /// the createPhoto method of LampPhotoFactory
     public Photo createPhoto(PhotoId myId) {
         assertIsNotNull(myId);
+        ///(4) the creation of a new LampPhoto object by calling the constructor of LampPhoto with the new keyword
         return new LampPhoto(myId);
     }
 }

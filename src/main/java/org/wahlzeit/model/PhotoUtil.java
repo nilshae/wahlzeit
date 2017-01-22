@@ -39,7 +39,9 @@ public class PhotoUtil {
 	/**
 	 * @methodtype creation
 	 */
+	/// the createPhoto method of PhotoUtil
 	public static Photo createPhoto(String filename, PhotoId id, Image uploadedImage) throws Exception {
+		///(3) PhotoUtil makes use of the PhotoFactory (note .getInstance() returns a LampPhotoFactory in my case) to create the Photo object
 		Photo result = PhotoFactory.getInstance().createPhoto(id);
 		result.setEnding(filename.substring(filename.lastIndexOf(".") + 1));
 

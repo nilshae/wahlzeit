@@ -73,10 +73,12 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 		}
 
 		try {
+			/// get the instance of PhotoManager (in my case this is a LampPhotoManager)
 			PhotoManager pm = PhotoManager.getInstance();
 			String fileName = us.getAsString(args, "fileName");
 			User user = (User) us.getClient();
 			Image uploadedImage = user.getUploadedImage();
+			///(1) starting the instantiation process by of a new LampPhoto by calling the createPhoto() method.
 			Photo photo = pm.createPhoto(fileName, uploadedImage);
 
 			user.addPhoto(photo);

@@ -28,6 +28,7 @@ import org.wahlzeit.utils.PatternInstance;
         participants = {"Singleton"},
         role = "Singleton"
 )
+///
 public class LampPhotoManager extends PhotoManager {
 
     // initialize the singleton instance.
