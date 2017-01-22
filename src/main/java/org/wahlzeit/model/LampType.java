@@ -57,7 +57,9 @@ public class LampType extends DataObject {
      * Creates a Lamp instance of this LampType.
      * @return Lamp
      */
+    /// the createInstance method of LampType
     public Lamp createInstance() {
+        ///[2] the creation of a new Lamp object by calling the constructor of Lamp with the new keyword
         return new Lamp(this);
     }
 

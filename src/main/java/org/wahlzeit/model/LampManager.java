@@ -59,12 +59,14 @@ public class LampManager extends ObjectManager {
     /**
      * @methodtype factory method
      */
+    /// the createLamp method of LampManager
     public Lamp createLamp(String modelName, LampType.Material material, LampType.Kind kind, boolean vintage) {
         assertIsValidModelName(modelName);
         assertIsNotNull(material);
         assertIsNotNull(kind);
 
         LampType lampType = new LampType(modelName, material, kind, vintage);
+        ///[1] LampManager calls the createInstance method of the LampType
         Lamp lampInstance = lampType.createInstance();
         updateObject(lampInstance);
         doAddLamp(lampInstance);
